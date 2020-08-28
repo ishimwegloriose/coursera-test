@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Media Queries</title>
+<style>
+*{
+box-sizing: border-box;
+}
+h1{
+margin-bottom: 15px;
+}
+p{
+border: 1px solid black;
+margin-bottom: 15px;
+}
+#p1{
+background-color: red;
+width: 300px;
+height: 300px;
+}
+#p2{
+background-color: blue;
+width: 50px;
+height: 50px;
+}
+@media(min-width: 1200px){
+#p1{
+width: 80%;
+}
+#p2{
+width:150px;
+height: 150px;
+}
+}
+
+@media(min-width: 992px) and (max-width: 1199px){
+#p1{
+width: 50%;
+}
+#p2{
+width:100px;
+height: 100px;
+}
+}
+
+</style>
+</head>
+
+<body style="background-color:grey;">
+<h1>Welcome to media querie page</h1>
+
+<p id="p1">Maximum size for the device </p>
+
+<p id ="p2">Minimum size for the device </p>
+
+<section>This is regular sentence to follow the four paragraph</section>
+</div>
+<a href="index.html">Back</a>
+</body>
+</html>

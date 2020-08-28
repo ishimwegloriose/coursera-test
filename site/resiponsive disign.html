@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name= "portview" content="width=device-width, initial-scale=1">
+<title>Responsive Design</title>
+<style>
+*{
+box-sizing: border-box;
+}
+h1{
+margin-bottom: 15px;
+}
+p{
+border: 1px solid black;
+margin-bottom: 15px;
+background-color: green;
+width: 90%;
+height: 150px;
+margin-left: auto;
+margin-right: auto;
+font-family: helvetica;
+color: white;
+}
+
+.row{
+width: 100%;
+}
+/****For a large devices only****/
+@media(min-width:1200px){
+
+.col-lg1, .col-lg2, .col-lg3, .col-lg4 .col-lg5, .col-lg6, .col-lg7, .col-lg8, 
+.col-lg9, .col-lg10, .col-lg11, .col-lg12{
+float: left;
+border: 1px solid green;
+
+}
+.col-lg1 {width: 8.33%}
+.col-lg2 {width: 16.66%}
+.col-lg3 {width: 25%}
+.col-lg4 {width: 33%}
+.col-lg5 {width: 41.66%}
+.col-lg6 {width: 50%} 
+.col-lg7 {width: 58.33%}
+.col-lg8 {width: 66.55%}
+.col-lg9 {width: 75%}
+.col-lg10 {width: 83.33%} 
+.col-lg11 {width: 91.66%} 
+.col-lg1 {width: 100%}
+}
+
+/****For Midium device****/
+@media(min-width: 950px) and (max-width: 1199px){
+
+.col-md1, .col-md2, .col-md3, .col-md4, .col-md5, .col-md6, .col-md7, .col-md8,
+.col-md9, .col-md10, .col-md11, .col-md12{
+float: left;
+border: 1px solid green;
+}
+
+.col-md1 {width: 8.33%}
+.col-md2 {width: 16.66%} 
+.col-md3 {width: 25%}
+.col-md4 {width: 33%}
+.col-md5 {width: 41.66%} 
+.col-md6 {width: 50%}  
+.col-md7 {width: 58.33%}
+.col-md8 {width: 66.55%}
+.col-md9 {width: 75%}
+.col-md10 {width: 75%} 
+.col-md11 {width: 91.66%} 
+.col-md12  {width: 100%}
+}
+
+
+</style>
+</head>
+
+<body style="background-color:grey;">
+<h1>Responsive Layout</h1>
+<div class= "row">
+  <div class= "col-lg3 col-md6"><p>Part 1</p> </div>
+  <div class= "col-lg3 col-md6"><p>Part 2</p></div>
+  <div class= "col-lg3 col-md6"><p>Part 3</p></div>
+  <div class= "col-lg3 col-md6"><p>Part 4</p></div>
+  <div class= "col-lg3 col-md6"><p>Part 5</p></div>
+  <div class= "col-lg3 col-md6"><p>Part 6</p></div>
+  <div class= "col-lg3 col-md6"><p>Part 7</p></div>
+  <div class= "col-lg3 col-md6"><p>Part 8</p></div>
+  <div class= "col-lg3 col-md6"><p>Part 9</p></div>
+  <div class= "col-lg3 col-md6"><p>Part 10</p></div>
+  <div class= "col-lg3 col-md6"><p>Part 11</p></div>
+  <div class= "col-lg3 col-md6"><p>Part 12</p></div>
+
+
+<section>This is regular sentence to follow the four paragraph</section>
+</div>
+<a href="index.html">Back</a>
+</body>
+</html>
