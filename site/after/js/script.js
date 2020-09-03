@@ -29,7 +29,7 @@ var allCategoriesUrl =
 var categoriesTitleHtml = "snippets/categories-title-snippet.html";
 var categoryHtml = "snippets/category-snippet.html";
 var menuItemsUrl =
-  "https://davids-restaurant.herokuapp.com/menu_items.json?category=";
+  "https://davids-restaurant.herokuapp.com/menu_items.json?category={{randomCategoryShortName}}";
 var menuItemsTitleHtml = "snippets/menu-items-title.html";
 var menuItemHtml = "snippets/menu-item.html";
 
@@ -104,12 +104,13 @@ function chooseRandomCategory (categories) {
 }
 	var randomCategoryShortName = chooseRandomCategory();
 
+var randomCategoryShortName = chooseRandomCategory ();
 // Load the menu items view
 // 'categoryShort' is a short_name for a category
-dc.loadMenuItems = function (categoryShort) {
+dc.loadMenuItems = function (randomCategoryShortName) {
   showLoading("#main-content");
   $ajaxUtils.sendGetRequest(
-    menuItemsUrl + categoryShort,
+    menuItemsUrl + randomCategoryShortName,
     buildAndShowMenuItemsHTML);
 };
 
@@ -202,23 +203,21 @@ function buildMenuItemsViewHtml(categoryMenuItems,
                                 menuItemsTitleHtml,
                                 menuItemHtml) {
 
-  menuItemsTitleHtml =
-    insertProperty(menuItemsTitleHtml,
-                   "name",
-                   categoryMenuItems.category.name);
-  menuItemsTitleHtml =
-    insertProperty(menuItemsTitleHtml,
-                   "special_instructions",
-                   categoryMenuItems.category.special_instructions);
+  menuItemsTitleHtml = insertProperty(menuItemsTitleHtml, "name",  categoryMenuItems.category.name);
+  menuItemsTitleHtml = insertProperty(menuItemsTitleHtml,  "special_instructions",  categoryMenuItems.category.special_instructions);
 
   var finalHtml = menuItemsTitleHtml;
   finalHtml += "<section class='row'>";
 
   // Loop over menu items
   var menuItems = categoryMenuItems.menu_items;
-  // var randomCategoryShortName = chooseRandomCategory();
+
+   //var randomCategoryShortName = chooseRandomCategory();
   var catShortName = categoryMenuItems.category.short_name;
-//var catShortName = categoryMenuItems.category.randomCategoryShortName;
+ // var catShortName = categoryMenuItems.category.randomCategoryShortName;
+
+ 
+
   
   for (var i = 0; i < menuItems.length; i++) {
     // Insert menu item values
