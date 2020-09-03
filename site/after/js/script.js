@@ -22,14 +22,14 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
 (function (global) {
 
 var dc = {};
-var indexMain = "index.html";
+
 var homeHtml = "snippets/home-snippet.html";
 var allCategoriesUrl =
   "https://davids-restaurant.herokuapp.com/categories.json";
 var categoriesTitleHtml = "snippets/categories-title-snippet.html";
 var categoryHtml = "snippets/category-snippet.html";
 var menuItemsUrl =
-  "https://davids-restaurant.herokuapp.com/menu_items.json?category={{randomCategoryShortName}}";
+  "https://davids-restaurant.herokuapp.com/menu_items.json?category=";
 var menuItemsTitleHtml = "snippets/menu-items-title.html";
 var menuItemHtml = "snippets/menu-item.html";
 
@@ -70,9 +70,6 @@ var switchMenuToActive = function () {
   }
 };
 
-
-
-
 // On page load (before images or CSS)
 document.addEventListener("DOMContentLoaded", function (event) {
 
@@ -95,22 +92,13 @@ dc.loadMenuCategories = function () {
     buildAndShowCategoriesHTML);
 };
 
-function chooseRandomCategory (categories) {
-  // Choose a random index into the array (from 0 inclusively until array length (exclusively))
-  var randomArrayIndex = Math.floor(Math.random() * categories.length);
 
-  // return category object with that randomArrayIndex
-  return categories[randomArrayIndex];
-}
-	var randomCategoryShortName = chooseRandomCategory();
-
-var randomCategoryShortName = chooseRandomCategory ();
 // Load the menu items view
 // 'categoryShort' is a short_name for a category
-dc.loadMenuItems = function (randomCategoryShortName) {
+dc.loadMenuItems = function (categoryShort) {
   showLoading("#main-content");
   $ajaxUtils.sendGetRequest(
-    menuItemsUrl + randomCategoryShortName,
+    menuItemsUrl + categoryShort,
     buildAndShowMenuItemsHTML);
 };
 
@@ -129,7 +117,8 @@ function buildAndShowCategoriesHTML (categories) {
           // Switch CSS class active to menu button
           switchMenuToActive();
 
-          var categoriesViewHtml = buildCategoriesViewHtml(categories,
+          var categoriesViewHtml =
+            buildCategoriesViewHtml(categories,
                                     categoriesTitleHtml,
                                     categoryHtml);
           insertHtml("#main-content", categoriesViewHtml);
@@ -183,7 +172,6 @@ function buildAndShowMenuItemsHTML (categoryMenuItems) {
         function (menuItemHtml) {
           // Switch CSS class active to menu button
           switchMenuToActive();
-		  
 
           var menuItemsViewHtml =
             buildMenuItemsViewHtml(categoryMenuItems,
@@ -203,27 +191,26 @@ function buildMenuItemsViewHtml(categoryMenuItems,
                                 menuItemsTitleHtml,
                                 menuItemHtml) {
 
-  menuItemsTitleHtml = insertProperty(menuItemsTitleHtml, "name",  categoryMenuItems.category.name);
-  menuItemsTitleHtml = insertProperty(menuItemsTitleHtml,  "special_instructions",  categoryMenuItems.category.special_instructions);
+  menuItemsTitleHtml =
+    insertProperty(menuItemsTitleHtml,
+                   "name",
+                   categoryMenuItems.category.name);
+  menuItemsTitleHtml =
+    insertProperty(menuItemsTitleHtml,
+                   "special_instructions",
+                   categoryMenuItems.category.special_instructions);
 
   var finalHtml = menuItemsTitleHtml;
   finalHtml += "<section class='row'>";
 
   // Loop over menu items
   var menuItems = categoryMenuItems.menu_items;
-
-   //var randomCategoryShortName = chooseRandomCategory();
   var catShortName = categoryMenuItems.category.short_name;
- // var catShortName = categoryMenuItems.category.randomCategoryShortName;
-
- 
-
-  
   for (var i = 0; i < menuItems.length; i++) {
     // Insert menu item values
     var html = menuItemHtml;
     html =
-      insertProperty(html, "randomCategoryShortName", menuItems[i].short_name);
+      insertProperty(html, "short_name", menuItems[i].short_name);
     html =
       insertProperty(html,
                      "catShortName",
