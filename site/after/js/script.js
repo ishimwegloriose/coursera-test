@@ -29,7 +29,7 @@ var allCategoriesUrl =
 var categoriesTitleHtml = "snippets/categories-title-snippet.html";
 var categoryHtml = "snippets/category-snippet.html";
 var menuItemsUrl =
-  "https://davids-restaurant.herokuapp.com/menu_items.json?category=";
+  "https://davids-restaurant.herokuapp.com/menu_items.json?category={{randomCategoryShortName}}";
 var menuItemsTitleHtml = "snippets/menu-items-title.html";
 var menuItemHtml = "snippets/menu-item.html";
 
@@ -102,6 +102,7 @@ function chooseRandomCategory (categories) {
   // return category object with that randomArrayIndex
   return categories[randomArrayIndex];
 }
+	var randomCategoryShortName = chooseRandomCategory();
 
 // Load the menu items view
 // 'categoryShort' is a short_name for a category
@@ -215,15 +216,15 @@ function buildMenuItemsViewHtml(categoryMenuItems,
 
   // Loop over menu items
   var menuItems = categoryMenuItems.menu_items;
-   var randomCategoryShortName = chooseRandomCategory();
-  //var catShortName = categoryMenuItems.category.short_name;
-  var catShortName = categoryMenuItems.category.randomCategoryShortName;
+  // var randomCategoryShortName = chooseRandomCategory();
+  var catShortName = categoryMenuItems.category.short_name;
+//var catShortName = categoryMenuItems.category.randomCategoryShortName;
   
   for (var i = 0; i < menuItems.length; i++) {
     // Insert menu item values
     var html = menuItemHtml;
     html =
-      insertProperty(html, "randomCategoryShortName", menuItems[i].randomCategoryShortName);
+      insertProperty(html, "randomCategoryShortName", menuItems[i].short_name);
     html =
       insertProperty(html,
                      "catShortName",
